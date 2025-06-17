@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 'Executar testes automatizados com Maven'
-        run: mvn clean test
+        run: mvn clean test -Dambiente=ci
 
       - name: 'Upload do relatório do Cucumber'
         uses: actions/upload-artifact@v4
