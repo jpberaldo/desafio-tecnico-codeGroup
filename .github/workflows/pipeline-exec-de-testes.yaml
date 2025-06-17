@@ -30,6 +30,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup
     steps:
+
+      - name: 'Clonando repositório novamente para a etapa de testes'
+        uses: actions/checkout@v4
+
       - name: 'Executar testes automatizados com Maven'
         run: mvn clean test
 
