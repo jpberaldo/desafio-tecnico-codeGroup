@@ -28,7 +28,7 @@ jobs:
 
       - name: 'Instalando Chrome Driver'
         run: |
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+')
+          CHROME_VERSION=$(google-chrome --version | grep -oE '[0-9]+' | head -1)
           echo "Chrome major version: $CHROME_VERSION"
           CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
           echo "ChromeDriver version to install: $CHROMEDRIVER_VERSION"
