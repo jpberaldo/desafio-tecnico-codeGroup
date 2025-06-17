@@ -6,6 +6,10 @@ Este é um repositório de automação de testes, com o objetivo de realizar o d
 - Junit 4 - https://github.com/junit-team/junit4/wiki/Download-and-Install
 - Selenium - https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java/4.18.1
 - Cucumber - https://cucumber.io/docs/installation/java/
+- GitHub Actions par CI/CD
+
+### Documentações
+- Arquivo com planilha de Testes: [Cenários de Teste.xlsx](Cenarios-de-Teste.xlsx)
 
 ### Notas Gerais
 
