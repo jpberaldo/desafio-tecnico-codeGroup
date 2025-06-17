@@ -12,6 +12,8 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
@@ -33,12 +35,20 @@ public class PaginaInicialSteps {
     @Dado("que o usuario acessou a pagina Inicial")
     public void que_o_usuario_acessou_a_pagina_inicial() {
 
-        navegador.get("https://www.amazon.com.br/s?k=bola&__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=15U5IT3LHEAGV&sprefix=bola%2Caps%2C205&ref=nb_sb_noss_1");
-        navegador.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
-        //String tituloDaPagina = navegador.getTitle();
-        // if (!tituloDaPagina.equals("Amazon Prime")) {
-        //    navegador.navigate().refresh();
-        // }
+        int tentativas = 0;
+        int maxTentativas = 5;
+
+        while (tentativas < maxTentativas) {
+            navegador.get("https://www.amazon.com.br/");
+
+            try {
+                new WebDriverWait(navegador, Duration.ofSeconds(1)).until(ExpectedConditions.visibilityOfElementLocated(By.id("twotabsearchtextbox")));
+                return;
+            } catch (Exception e) {
+                tentativas++;
+                navegador.navigate().refresh();
+            }
+        }
 
     }
 
@@ -76,8 +86,9 @@ public class PaginaInicialSteps {
 
     //CT3
     @Entao("deve exibir no maximo ate {int} sugestoes de pesquisa para o termo inicial pesquisado")
-    public void deve_exibir_no_maximo_ate_sugestoes_de_pesquisa_para_o_termo_inicial_pesquisado(int valorEsperado) throws InterruptedException {
-        Thread.sleep(5);
+    public void deve_exibir_no_maximo_ate_sugestoes_de_pesquisa_para_o_termo_inicial_pesquisado(int valorEsperado) {
+        WebDriverWait wait = new WebDriverWait(navegador, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".s-suggestion")));
         List<WebElement> qtdOpcoesSugeridas = navegador.findElements(By.cssSelector(".s-suggestion"));
         System.out.println(qtdOpcoesSugeridas.size());
         Assert.assertTrue(qtdOpcoesSugeridas.size() <= valorEsperado);
