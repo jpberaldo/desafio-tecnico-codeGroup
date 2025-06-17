@@ -1,0 +1,48 @@
+name: 'Pipeline para execução dos testes'
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Clonando repositório'
+        uses: actions/checkout@v4
+
+      - name: 'Instalando Java 17'
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: 'Instalando Maven'
+        run: sudo apt-get update && sudo apt-get install -y maven
+
+      - name: 'Instalando Google Chrome'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt install -y ./google-chrome-stable_current_amd64.deb
+
+      - name: 'Instalando Chrome Driver'
+        run: |
+          wget https://chromedriver.storage.googleapis.com/116.0.5845.96/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
+
+  execucao-de-testes:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: 'Executar testes automatizados com Maven'
+        run: mvn clean test
+
+      - name: 'Upload do relatório do Cucumber'
+        uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: cucumber-report
+          path: target/cucumber-report.html

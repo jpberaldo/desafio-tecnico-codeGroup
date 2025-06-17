@@ -8,7 +8,7 @@ public class DriverConfig {
     private static WebDriver driver;
 
     public static void configurarDriverDoNavegadorWeb() {
-        System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe"); //webdriver.edge.driver e msedgedriver.exe
+      //  System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe"); //webdriver.edge.driver e msedgedriver.exe
         driver = new ChromeDriver(); //new EdgeDriver()
         driver.manage().window().maximize();
     }
