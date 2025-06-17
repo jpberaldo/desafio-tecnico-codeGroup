@@ -16,3 +16,9 @@ Este é um repositório de automação de testes, com o objetivo de realizar o d
 Para o desenvolvimento do projeto, está sendo utilizado alguns padrões de desenvolvimento de códigos (Design Pattern):
 - Como o Page Objects, onde seu objetivo é abstrair uma página que será automatizada para a sua classe, trazendo alguns benefícios como maior independência dos testes, facilidade na manutenção e um código mais limpo.
 E também, utilizando o Fluent Pages onde seu objetivo é encadear as ações executadas pelo usuário na página que será automatizada, tornando o código mais legível e simples de ser usado.
+
+### Execução de Testes via Pipeline
+[![Pipeline para execução dos testes](https://github.com/jpberaldo/desafio-tecnico-codeGroup/actions/workflows/pipeline-exec-de-testes.yaml/badge.svg?branch=master)](https://github.com/jpberaldo/desafio-tecnico-codeGroup/actions/workflows/pipeline-exec-de-testes.yaml)
+
+Hash SHA-256 do último relatório gerado:
+.sha256:69e025900d2e5cb3e203d58ca118d62cc112b3831f20fd40359c0c7dcf051952
