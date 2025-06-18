@@ -9,7 +9,7 @@ Funcionalidade: Pagina Inicial
       E selecionar o botao da Lupa para submeter a pesquisa
       Entao exibe a pagina do produto com sucesso
 
-  @Ngeativo
+  @Negativo
     Cenario: Realizar pesquisa de um produto sem sucesso
       Dado que o usuario acessou a pagina Inicial
       Quando digitar um produto
